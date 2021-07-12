@@ -51,7 +51,23 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Update(Usuario model)
         {
-            return View();
+            using (var context = new HavanLabsContext())
+            {
+                context.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
+            return RedirectToAction("List");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            using(var context = new HavanLabsContext())
+            {
+                Usuario model = context.Usuarios.Find(id);
+                context.Usuarios.Remove(model);
+                context.SaveChanges();
+            }
+            return RedirectToAction("List");
         }
     }
 }
