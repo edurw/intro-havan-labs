@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,27 +9,11 @@ namespace Data
 {
     public class Usuario
     {
+        [Key]
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
-        private int _idade;
-        public int Idade 
-        {
-            get
-            {
-                return this._idade;
-            }
-            set
-            {
-                if (value > 0)
-                {
-                    this._idade = value;
-                }
-                else
-                {
-                    throw new Exception("Valor inválido!");
-                }
-            } 
-        }
+        public int Idade { get; set; }
         public string Email { get; set; }
         public string Endereco { get; set; }
 
