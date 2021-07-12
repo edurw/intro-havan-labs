@@ -9,6 +9,7 @@ namespace Exercicios1
 {
     class Menu
     {
+        List<Data.Usuario> lista = new List<Data.Usuario>();
         public static void MontaMenu()
         {
             Cabecalho();
@@ -45,15 +46,29 @@ namespace Exercicios1
                     break;
                 case 1:
                     string resposta = "";
-                    List<Usuario> usuarios = new List<Usuario>();
                     do
                     {
-                        Usuario user = new Usuario();
-                        user.Cadastro();
+                        Console.Write("Nome: ");
+                        string nome = Data.Validacao.ValidaStringEmBranco();
+                        //Console.WriteLine(nome.Trim().Replace(" ", "").Length);
+                        Console.Write("Sobrenome: ");
+                        string sobrenome = Data.Validacao.ValidaStringEmBranco();
+                        Console.Write("Idade: ");
+                        int idade = Data.Validacao.ValidaInteiros();
+                        Console.Write("e-mail: ");
+                        string email = Data.Validacao.ValidaStringEmBranco();
+                        Console.Write("Endereço: ");
+                        string endereco = Data.Validacao.ValidaStringEmBranco();
+                        //Console.WriteLine("\n");
+                        Usuario user = new Usuario(nome, sobrenome, idade, email, endereco);
+
                         Console.WriteLine("Deseja cadastrar mais um? (y/n)");
                         resposta = Console.ReadLine();
-                        usuarios.Add(user);
-                        Console.WriteLine($"Usuario {user.nome} cadastrado com sucesso!");
+                      
+                        Console.WriteLine($"Usuario {user.Nome} cadastrado com sucesso!");
+
+                        Menu.ExibirCabecalhoDadosCadastro();
+
                     } while (resposta == "y");
                     break;
                 case 2:
@@ -67,11 +82,16 @@ namespace Exercicios1
             //return Validacao.ValidaInteiros();
         }
 
-        public static void ExibirCabecalhoDadosCadastro()
+        public void ExibirCabecalhoDadosCadastro()
         {
             Console.WriteLine("\n----------------------------------------------");
             Console.WriteLine("DADOS DO USUÁRIO CADASTRADO");
             Console.WriteLine("----------------------------------------------");
+
+            foreach (Usuario u in lista)
+            {
+                Console.WriteLine("Nome: " + u.Nome + "\nSobrenome: " + u.Sobrenome + "\nIdade: " + u.Idade + "\ne-mail: " + u.Email.ToLower() + "\nEndereço: " + u.Endereco);
+            }
         }
 
         /*public static void ExibirDadosUsuario()
