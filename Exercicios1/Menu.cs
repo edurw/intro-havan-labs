@@ -45,31 +45,8 @@ namespace Exercicios1
                 case 0:
                     break;
                 case 1:
-                    string resposta = "";
-                    do
-                    {
-                        Console.Write("Nome: ");
-                        string nome = Data.Validacao.ValidaStringEmBranco();
-                        //Console.WriteLine(nome.Trim().Replace(" ", "").Length);
-                        Console.Write("Sobrenome: ");
-                        string sobrenome = Data.Validacao.ValidaStringEmBranco();
-                        Console.Write("Idade: ");
-                        int idade = Data.Validacao.ValidaInteiros();
-                        Console.Write("e-mail: ");
-                        string email = Data.Validacao.ValidaStringEmBranco();
-                        Console.Write("Endereço: ");
-                        string endereco = Data.Validacao.ValidaStringEmBranco();
-                        //Console.WriteLine("\n");
-                        Usuario user = new Usuario(nome, sobrenome, idade, email, endereco);
-
-                        Console.WriteLine("Deseja cadastrar mais um? (y/n)");
-                        resposta = Console.ReadLine();
-                      
-                        Console.WriteLine($"Usuario {user.Nome} cadastrado com sucesso!");
-
-                        Menu.ExibirCabecalhoDadosCadastro();
-
-                    } while (resposta == "y");
+                    ModuloUsuario moduloUsuario = new ModuloUsuario();
+                    moduloUsuario.Create();
                     break;
                 case 2:
                     Console.WriteLine("Em desenvolvimento");
